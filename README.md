@@ -11,7 +11,21 @@ trim_galore --paired -q 30 --fastqc -j 20 *_1.fastq *_2.fastq
 I needed to run MITGARD from the bin directory individually for each transcriptome. For each transcriptome I run the following code.
 
 ```
-nohup ./MITGARD.py -1 /home/riwama/Cracas_transcriptomes/fq_files/trimmed/SRR14809834_1_val_1.fq -2 /home/riwama/Cracas_transcriptomes/fq_files/trimmed/SRR14809834_2_val_2.fq -R ~/Cracas_transcriptomes/mitogenomes/refence.fa -c 20 -s SRR14809834
+
+./MITGARD.py -1 /home/riwama/Cracas_transcriptomes/2nd_files/trimmed/DRR169038_1_val_1.fq -2 /home/riwama/Cracas_transcriptomes/2nd_files/trimmed/DRR169038_2_val_2.fq -R ~/Cracas_transcriptomes/mitogenomes/refence.fa -c 20 -s DRR169038
+
+mv *_mitogenome.fa ~/Cracas_transcriptomes/mitogenomes/
+rm -rf *.fasta
+
+rm DRR* -rf
+
+rm -rf align.sam
+
+rm mapped/ -rf
+
+rm -rf bowtie_index/
+
+echo done DRR169038
 ```
 
 ## Transcriptome assembly
