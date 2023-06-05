@@ -1,4 +1,4 @@
-# Mitogenomas_cracas
+# Transcriptomas_cracas
 
 ## quality trimming
 
