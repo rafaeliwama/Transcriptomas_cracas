@@ -60,7 +60,12 @@ for file in *.pep;do sed 's/*//g' $file > $file.new; done
 for file in *.new; do ~/Softwares/interproscan-5.61-93.0/./interproscan.sh -i $file -o /home/riwama/Cracas_transcriptomes/interpro_dir/$file.interpro.txt -goterm -cpu 5 -f gff3; done
 ```
 
+## building specific databases
 
+```
+cd ~/databases/immunity/
 
+for file in *.fasta; do diamond makedb --in $file -d $file.ddb; done
+```
 
 
