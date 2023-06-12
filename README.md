@@ -67,5 +67,12 @@ cd ~/databases/immunity/
 
 for file in *.fasta; do diamond makedb --in $file -d $file.ddb; done
 ```
+## blastx immunity
 
+```
+cd ~/Cracas_transcriptomes/Trinity/assemblies/cds
+
+
+for file in *.cds;do diamond blastx --log --threads 10 --db ~/databases/immunity/TLR_metazoa_uniprot.fasta.ddb --query $file --ultra-sensitive --outfmt 6 --max-target-seqs 1 --evalue 1e-10 --out $file.immune.blastp.txt; done
+```
 
