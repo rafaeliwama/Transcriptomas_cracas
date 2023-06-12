@@ -35,5 +35,32 @@ To facilitate tracking of error I run individually the following code in a scrip
 ```
 Trinity --seqType fq --left ~/Cracas_transcriptomes/fq_files/trimmed/XXXX_1_val_1.fq --right ~/Cracas_transcriptomes/fq_files/trimmed/XXXX_2_val_2.fq --CPU 20 --max_memory 50G --output XXXX_trinity
 ```
+## ORFs prediction with transdecoder
+
+```
+cd ~/Cracas_transcriptomes/Trinity/assemblies
+
+for fasta in *.fa; do TransDecoder.LongOrfs -t $fasta; TransDecoder.Predict -t $fasta; done
+```
+# functional annotation
+## diamond against swiss-prot
+
+```
+cd ~/Cracas_transcriptomes/Trinity/assemblies/pep
+
+
+for file in *.pep;do diamond blastp --log --threads 20 --db ~/databases/swissprot/uniprot_sprot.diamond --query $file --ultra-sensitive --outfmt 6 --max-target-seqs 1 --evalue 1e-10 --out $file.blastp.txt; done
+```
+
+## functional annotation with interproscan
+
+```
+for file in *.pep;do sed 's/*//g' $file > $file.new; done
+
+for file in *.new; do ~/Softwares/interproscan-5.61-93.0/./interproscan.sh -i $file -o /home/riwama/Cracas_transcriptomes/interpro_dir/$file.interpro.txt -goterm -cpu 5 -f gff3; done
+```
+
+
+
 
 
